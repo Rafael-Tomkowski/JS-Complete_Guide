@@ -28,10 +28,29 @@ function writeToLog(operationIdentifier,
 
 function calculateResult(calculationType){
   const enteredNumber = getUserNumberInput();
+  
+  if(
+    calculationType !== 'ADD' &&
+    calculationType !== 'SUBTRACT' &&
+    calculationType !== 'MULTIPLY' &&
+    calculationType !== 'DIVISION' ||
+    !enteredNumber
+    ) {
+      return;
+    }
+    
+    // if (
+      //   calculationType === 'ADD'||
+      //   calculationType === 'SUBTRACT' ||
+      //   calculationType === 'MULTIPLY' ||
+      //   calculationType === 'DIVIDE'
+      // ) {
+
   const initialResult = currentResult;
   let mathOperator;
+        
   if (calculationType === 'ADD') {
-    currentResult += enteredNumber;
+          currentResult += enteredNumber;
     mathOperator = '+'
   } else if(calculationType === 'SUBTRACT') {
     currentResult -= enteredNumber;
@@ -46,6 +65,7 @@ function calculateResult(calculationType){
 
   createAndWriteOutput(mathOperator, initialResult, enteredNumber);
   writeToLog(calculationType, initialResult, enteredNumber, currentResult);
+
 }
 
 function add(){
@@ -132,5 +152,6 @@ multiplyBtn.addEventListener('click', mult);
 //    }
 // }
 
-
-
+//Operator Precedence
+//Ordem de precedência: Define em que ordem os operadores serão executados.
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
