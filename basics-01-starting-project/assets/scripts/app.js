@@ -25,36 +25,43 @@ function writeToLog(operationIdentifier,
       console.log(logEntries);
 }
 
-function add(){
+
+function calculateResult(calculationType){
   const enteredNumber = getUserNumberInput();
   const initialResult = currentResult;
-  currentResult += enteredNumber;
-  createAndWriteOutput('+', initialResult, enteredNumber);
-  writeToLog("ADD", initialResult, enteredNumber, currentResult);
+  let mathOperator;
+  if (calculationType === 'ADD') {
+    currentResult += enteredNumber;
+    mathOperator = '+'
+  } else if(calculationType === 'SUBTRACT') {
+    currentResult -= enteredNumber;
+    mathOperator = '-'
+  } else if(calculationType === 'DIVISION'){
+    currentResult /=  enteredNumber;
+    mathOperator = '/'
+  }else if (calculationType === 'MULTIPLY'){
+    currentResult *= enteredNumber;
+    mathOperator = '*'
+  }
+
+  createAndWriteOutput(mathOperator, initialResult, enteredNumber);
+  writeToLog(calculationType, initialResult, enteredNumber, currentResult);
+}
+
+function add(){
+  calculateResult('ADD');
 } 
 
 function sub(){
-  const enteredNumber = getUserNumberInput();
-  const initialResult = currentResult;
-  currentResult -= enteredNumber;
-  createAndWriteOutput('-', initialResult, enteredNumber);
-  writeToLog("SUBTRACT", initialResult, enteredNumber, currentResult);
+  calculateResult('SUBTRACT');
 } 
 
 function div(){
-  const enteredNumber = getUserNumberInput();
-  const initialResult = currentResult;
-  currentResult /=  enteredNumber;
-  createAndWriteOutput('/', initialResult, enteredNumber);
-  writeToLog("DIVISION", initialResult, enteredNumber, currentResult);
+  calculateResult('DIVISION')
 } 
 
 function mult(){
-  const enteredNumber = getUserNumberInput();
-  const initialResult = currentResult;
-  currentResult *= enteredNumber;
-  createAndWriteOutput('*', initialResult, enteredNumber);
-  writeToLog("MULTIPLY", initialResult, enteredNumber, currentResult);
+  calculateResult('MULTIPLY')
 } 
 
 addBtn.addEventListener('click', add);
@@ -110,3 +117,20 @@ multiplyBtn.addEventListener('click', mult);
 //   duration: 30,
 //   levels: ["Beginner", "Advanced"]
 // }
+
+//TEST CODE 7
+// let userCategory;
+// let age = 30;
+
+// function solve() {
+//    if(age<18){
+//       userCategory = 'child';
+//    }else if(age < 65){
+//       userCategory = 'adult';
+//    }else {
+//     userCategory = 'senior' ;      
+//    }
+// }
+
+
+
